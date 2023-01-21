@@ -69,6 +69,16 @@ class Menu {
         `);
     }
 
+    showPartyMenuOptions(partyInfo) {
+        return prompt(`
+            0) exit
+            1) create character
+            2) delete character
+            ----------------------------
+            ${teamInfo}
+         `);
+    }
+
     displayParties() {
         let partyString = '';
         for (let i = 0; i < this.parties.length; i++) {
@@ -86,6 +96,24 @@ class Menu {
         let index = prompt('Enter the index of the party you wish to view:');
         if (index > -1 && index < this.parties.length) {
             this.selectedParty = this.parties[index];
+            let description = 'Party Name: ' + this.selectedParty.name + '/n';
+            
+            for (let i = 0; i < this.selectedParty.characters.length; i++) {
+                description += i + ') ' + this.selectedParty.characters[i].name 
+                + ' - ' + this.selectedParty.characters[i].job + '\n';
+            }
+            
+            let selection = this.showPartyMenuOptions(description)
+            switch (selection) {
+                case '1': 
+                    this.createCharacter();
+                    break;
+                case '2':
+                    this.deleteCharacter();
+            }
         }
     }
 }
+
+let menu = new Menu();
+menu.start();
