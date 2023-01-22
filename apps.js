@@ -118,6 +118,7 @@ class Menu {
                 description += i + ') ' + this.selectedParty.characters[i].name 
                 + ' - ' + this.selectedParty.characters[i].job + '\n';
             }
+        }
             
             let selection = this.showPartyMenuOptions(description)
             switch (selection) {
@@ -134,9 +135,8 @@ class Menu {
             let index = prompt('Enter the index of the party you wish to delete"');
             if (index > -1 && index < this.parties.length) {
                 this.parties.splice(index, 1);
-    }
+            }
         }
-    }
 
     createCharacter() {
         let name = prompt('Enter name for new character:');
